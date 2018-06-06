@@ -80,8 +80,10 @@ typedef enum {
 	attrtypeCK_MECHANISM_TYPE_PTR
 } AttributeType;
 
+#define ATTRIBUTE_EOL	(CK_ATTRIBUTE_TYPE)-1
+
 typedef struct {
-	int nId;
+	CK_ATTRIBUTE_TYPE nId;
 	const char *szName;
 	AttributeType attrtypeType;
 	int nSize;
@@ -195,7 +197,7 @@ const AttributeDescription attrdescAttributes[] = {
 	{CKA_DEFAULT_CMS_ATTRIBUTES, "CKA_DEFAULT_CMS_ATTRIBUTES", attrtypeByteArray, 0},
 	{CKA_SUPPORTED_CMS_ATTRIBUTES, "CKA_SUPPORTED_CMS_ATTRIBUTES", attrtypeByteArray, 0},
 	{CKA_ALLOWED_MECHANISMS, "CKA_ALLOWED_MECHANISMS", attrtypeCK_MECHANISM_TYPE_PTR, 0},
-	{-1, NULL, attrtypeUnknown, 0}
+	{ATTRIBUTE_EOL, NULL, attrtypeUnknown, 0}
 };
 
 static
@@ -1135,7 +1137,7 @@ Dump (
 			printf ("%30s: %ld\n", "Object size", lObjectSize);
 		}
 
-		for (int j=0;attrdescAttributes[j].nId!=-1;j++) {
+		for (int j=0;attrdescAttributes[j].nId!=ATTRIBUTE_EOL;j++) {
 			char Buffer[10*1024];
 			CK_ATTRIBUTE t[] = {
 				{attrdescAttributes[j].nId, Buffer, sizeof (Buffer)}
