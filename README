@@ -1,3 +1,9 @@
+NOTE: branched to make custom changes and to add cmake build environment for pkcs11-dump
+
+-SPYRUS, Inc.
+
+----------------
+
 pkcs11-dump -- PKCS#11 token dump.
 
 Copyright (c) 2006 Alon Bar-Lev <alon.barlev@gmail.com>
